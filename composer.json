@@ -1,0 +1,28 @@
+{
+    "name": "fooman/blog-example",
+    "description": "Blog post example",
+    "require": {
+        "magento/module-backend": "~100.0.2",
+        "magento/module-sales": "~100.0.2"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "~4.5",
+        "magento/community-edition": "dev-master"
+    },
+    "autoload": {
+        "psr-4": {
+            "Fooman\\BlogExample\\": "src/"
+        },
+        "files": [
+            "src/registration.php"
+        ]
+    },
+    "repositories": [
+        {
+            "type": "composer",
+            "url": "https://repo.magento.com/"
+        }
+    ],
+    "type": "magento2-module",
+    "version": "2.0.2"
+}
