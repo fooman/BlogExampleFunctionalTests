@@ -9,7 +9,7 @@
 
 namespace Fooman\BlogExample\Test\Constraint;
 
-use Magento\Catalog\Test\Page\Product\CatalogProductView
+use Magento\Catalog\Test\Page\Product\CatalogProductView;
 use Magento\Mtf\Constraint\AbstractConstraint as OriginalAbstractConstraint;
 use Magento\Mtf\Client\Locator;
 
@@ -24,9 +24,9 @@ abstract class AssertExampleBlockExists extends OriginalAbstractConstraint
     public function processAssert(CatalogProductView $catalogProductView)
     {
         \PHPUnit_Framework_Assert::assertSame(
-            'Some text',
-            $catalogProductView->getViewBlock()->waitForElementVisible('.fooman-blog-example', Locator::SELECTOR_CSS),
-            'Increment id not correct.'
+            'Hello world',
+            $catalogProductView->getFoomanBlogExampleBlock()->getBlogExampleBlock(),
+            'Block not found.'
         );
     }
 
@@ -37,6 +37,6 @@ abstract class AssertExampleBlockExists extends OriginalAbstractConstraint
      */
     public function toString()
     {
-        return 'Increment id is correct.';
+        return 'Block is found.';
     }
 }
