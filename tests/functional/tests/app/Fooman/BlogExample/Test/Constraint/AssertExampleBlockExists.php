@@ -13,7 +13,7 @@ use Magento\Catalog\Test\Page\Product\CatalogProductView;
 use Magento\Mtf\Constraint\AbstractConstraint as OriginalAbstractConstraint;
 use Magento\Mtf\Client\Locator;
 
-abstract class AssertExampleBlockExists extends OriginalAbstractConstraint
+class AssertExampleBlockExists extends OriginalAbstractConstraint
 {
     /**
      * Assert that our example block is added
