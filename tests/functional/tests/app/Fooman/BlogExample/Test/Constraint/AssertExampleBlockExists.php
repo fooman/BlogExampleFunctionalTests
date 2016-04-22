@@ -29,6 +29,7 @@ class AssertExampleBlockExists extends AbstractConstraint
     ) {
         $browser->open($_ENV['app_frontend_url'] . $product->getUrlKey() . '.html');
 
+        
         \PHPUnit_Framework_Assert::assertSame(
             'Hello world',
             $catalogProductView->getFoomanBlogExampleBlock()->getBlogExampleBlock(),

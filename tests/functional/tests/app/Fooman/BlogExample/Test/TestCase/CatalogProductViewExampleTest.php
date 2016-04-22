@@ -2,8 +2,10 @@
 
 namespace Fooman\BlogExample\Test\TestCase;
 
-use Magento\Mtf\TestCase\Injectable;
 use Magento\Catalog\Test\Page\Adminhtml\CatalogProductIndex;
+use Magento\Catalog\Test\Page\Adminhtml\CatalogProductNew;
+use Magento\Mtf\Fixture\FixtureFactory;
+use Magento\Mtf\TestCase\Injectable;
 
 class CatalogProductViewExampleTest extends Injectable
 {
@@ -14,33 +16,60 @@ class CatalogProductViewExampleTest extends Injectable
     /* end tags */
 
     /**
-     * Page product on backend
+     * Product page with a grid
      *
      * @var CatalogProductIndex
      */
     protected $catalogProductIndex;
 
     /**
-     * Filling objects of the class
+     * Page to create a product
      *
-     * @param CatalogProductIndex $catalogProductIndexNewPage
-     * @param CatalogProductNew $catalogProductNewPage
+     * @var CatalogProductNew
+     */
+    protected $catalogProductNew;
+
+    /**
+     * Fixture Factory
+     *
+     * @var FixtureFactory
+     */
+    protected $fixtureFactory;
+
+    /**
+     * Injection data
+     *
+     * @param CatalogProductIndex $catalogProductIndex
+     * @param CatalogProductNew $catalogProductNew
+     * @param FixtureFactory $fixtureFactory
      * @return void
      */
     public function __inject(
-        CatalogProductIndex $catalogProductIndexNewPage
+        CatalogProductIndex $catalogProductIndex,
+        CatalogProductNew $catalogProductNew,
+        FixtureFactory $fixtureFactory
     ) {
-        $this->catalogProductIndex = $catalogProductIndexNewPage;
+        $this->catalogProductIndex = $catalogProductIndex;
+        $this->catalogProductNew = $catalogProductNew;
+        $this->fixtureFactory = $fixtureFactory;
     }
 
     /**
-     * Test create simple product
+     * Run product type switching on creation test
      *
-     * @return void
+     * @param string $createProduct
+     * @param string $product
+     * @return array
      */
-    public function test()
+    public function test($createProduct, $product)
     {
+        list($fixture, $dataset) = explode('::', $product);
+        $product = $this->fixtureFactory->createByCode($fixture, ['dataset' => $dataset]);
         $this->catalogProductIndex->open();
-        $this->catalogProductIndex->getGridPageActionBlock()->addProduct();
+        $this->catalogProductIndex->getGridPageActionBlock()->addProduct($createProduct);
+        $this->catalogProductNew->getProductForm()->fill($product);
+        $this->catalogProductNew->getFormPageActions()->save($product);
+
+        return ['product' => $product];
     }
 }
