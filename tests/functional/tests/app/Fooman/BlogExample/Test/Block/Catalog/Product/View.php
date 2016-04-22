@@ -27,7 +27,7 @@ class View extends Block
 
     public function getBlogExampleBlock()
     {
-        return $this->_rootElement->find($this->blockSelector, Locator::SELECTOR_CSS);
+        return $this->_rootElement->find($this->blockSelector, Locator::SELECTOR_CSS)->getText();
     }
 }
 
