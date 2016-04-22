@@ -4,7 +4,7 @@
     <testCase name="Fooman\BlogExample\Test\TestCase\CatalogProductViewExampleTest"
               summary="Test that the Example block is added" ticketId="401">
         <variation name="ExampleBlockVariation1">
-            <constraint name="Fooman\BlogExample\Test\Constraint\AssertExampleBlockExists"/>
+            <constraint name="Fooman\BlogExample\Test\Constraint\AssertExampleBlockExists" />
         </variation>
     </testCase>
 </config>

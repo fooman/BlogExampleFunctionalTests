@@ -10,19 +10,25 @@
 namespace Fooman\BlogExample\Test\Constraint;
 
 use Magento\Catalog\Test\Page\Product\CatalogProductView;
-use Magento\Mtf\Constraint\AbstractConstraint as OriginalAbstractConstraint;
-use Magento\Mtf\Client\Locator;
+use Magento\Mtf\Constraint\AbstractConstraint;
+use Magento\Catalog\Test\Fixture\CatalogProductSimple;
+use Magento\Mtf\Client\BrowserInterface;
 
-class AssertExampleBlockExists extends OriginalAbstractConstraint
+class AssertExampleBlockExists extends AbstractConstraint
 {
     /**
      * Assert that our example block is added
      *
-     * @param CatalogProductView $CatalogProductView
+     * @param CatalogProductView $catalogProductView
      * @return void
      */
-    public function processAssert(CatalogProductView $catalogProductView)
-    {
+    public function processAssert(
+        CatalogProductView $catalogProductView, 
+        CatalogProductSimple $product,
+        BrowserInterface $browser
+    ) {
+        $browser->open($_ENV['app_frontend_url'] . $product->getUrlKey() . '.html');
+
         \PHPUnit_Framework_Assert::assertSame(
             'Hello world',
             $catalogProductView->getFoomanBlogExampleBlock()->getBlogExampleBlock(),
