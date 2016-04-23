@@ -25,6 +25,9 @@ class View extends Block
      */
     protected $blockSelector = '.fooman-blog-example';
 
+    /**
+     * @return string
+     */
     public function getBlogExampleBlock()
     {
         return $this->_rootElement->find($this->blockSelector, Locator::SELECTOR_CSS)->getText();

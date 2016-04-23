@@ -20,6 +20,8 @@ class AssertExampleBlockExists extends AbstractConstraint
      * Assert that our example block is added
      *
      * @param CatalogProductView $catalogProductView
+     * @param CatalogProductSimple $product
+     * @param BrowserInterface $browser
      * @return void
      */
     public function processAssert(
@@ -29,7 +31,7 @@ class AssertExampleBlockExists extends AbstractConstraint
     ) {
         $browser->open($_ENV['app_frontend_url'] . $product->getUrlKey() . '.html');
 
-        
+
         \PHPUnit_Framework_Assert::assertSame(
             'Hello world',
             $catalogProductView->getFoomanBlogExampleBlock()->getBlogExampleBlock(),
