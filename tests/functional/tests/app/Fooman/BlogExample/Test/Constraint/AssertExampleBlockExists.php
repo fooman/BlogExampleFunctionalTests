@@ -34,7 +34,7 @@ class AssertExampleBlockExists extends AbstractConstraint
 
         \PHPUnit_Framework_Assert::assertSame(
             'Hello world',
-            $catalogProductView->foomanCatalogProductPageMainBlock()->getBlogExampleBlockText(),
+            $catalogProductView->getFoomanCatalogProductPageMainBlock()->getBlogExampleBlockText(),
             'Block not found.'
         );
     }
