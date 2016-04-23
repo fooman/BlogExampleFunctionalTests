@@ -4,7 +4,6 @@
     <testCase name="Fooman\BlogExample\Test\TestCase\CatalogProductViewExampleTest"
               summary="Test that the Example block is added" ticketId="401">
         <variation name="ExampleBlockVariation1">
-            <data name="createProduct" xsi:type="string">simple</data>
             <data name="product" xsi:type="string">catalogProductSimple::product_10_dollar</data>
             <constraint name="Fooman\BlogExample\Test\Constraint\AssertExampleBlockExists" />
         </variation>

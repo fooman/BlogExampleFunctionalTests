@@ -61,12 +61,12 @@ class CatalogProductViewExampleTest extends Injectable
      * @param string $product
      * @return array
      */
-    public function test($createProduct, $product)
+    public function test($product)
     {
         list($fixture, $dataset) = explode('::', $product);
         $product = $this->fixtureFactory->createByCode($fixture, ['dataset' => $dataset]);
         $this->catalogProductIndex->open();
-        $this->catalogProductIndex->getGridPageActionBlock()->addProduct($createProduct);
+        $this->catalogProductIndex->getGridPageActionBlock()->addProduct();
         $this->catalogProductNew->getProductForm()->fill($product);
         $this->catalogProductNew->getFormPageActions()->save($product);
 
